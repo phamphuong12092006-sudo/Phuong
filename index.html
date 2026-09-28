@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phạm Mai Phương - Portfolio</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Montserrat:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Tailwind Configuration -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        bgMain: '#FDFBF7', // Kem ấm
+                        accentPrimary: '#D8A798', // Hồng đất nhạt
+                        accentSecondary: '#EAD8CF', // Cát ấm
+                        textMain: '#2C221E', // Nâu đen trầm
+                        textMuted: '#7A6B63', // Nâu xám
+                    },
+                    fontFamily: {
+                        sans: ['Montserrat', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                        cursive: ['Alex Brush', 'cursive'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Custom CSS -->
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            background-color: #FDFBF7;
+            color: #2C221E;
+        }
+        
+        /* Cursive Accent */
+        .text-accent-cursive {
+            font-family: 'Alex Brush', cursive;
+            color: #D8A798;
+        }
+
+        /* Glassmorphism */
+        .glass-card {
+            background: rgba(253, 251, 247, 0.7);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(234, 216, 207, 0.5);
+        }
+
+        /* Smooth Fade In Animation */
+        .fade-in-section {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+            will-change: opacity, visibility;
+        }
+        .fade-in-section.is-visible {
+            opacity: 1;
+            transform: none;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #FDFBF7; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #EAD8CF; 
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #D8A798; 
+        }
+
+        /* Navigation Transition */
+        #navbar {
+            transition: all 0.3s ease-in-out;
+        }
+        .nav-scrolled {
+            background: rgba(253, 251, 247, 0.95) !important;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            backdrop-filter: blur(8px);
+        }
+    </style>
+</head>
+<body class="font-sans antialiased selection:bg-accentPrimary selection:text-white">
+
+    <!-- Navigation Bar -->
+    <nav id="navbar" class="fixed w-full z-50 top-0 py-4 px-6 md:px-12 bg-transparent">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <a href="#" class="font-serif text-2xl font-bold tracking-wider text-textMain">PMP.</a>
+            
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex space-x-8 text-sm font-medium tracking-widest uppercase text-textMuted">
+                <a href="#about" class="hover:text-accentPrimary transition-colors">About</a>
+                <a href="#education" class="hover:text-accentPrimary transition-colors">Education</a>
+                <a href="#projects" class="hover:text-accentPrimary transition-colors">Projects</a>
+                <a href="#experience" class="hover:text-accentPrimary transition-colors">Experience</a>
+                <a href="#contact" class="hover:text-accentPrimary transition-colors">Contact</a>
+            </div>
+
+            <!-- Mobile Hamburger -->
+            <button id="mobile-menu-btn" class="md:hidden focus:outline-none text-textMain">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+            </button>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden absolute top-full left-0 w-full bg-bgMain border-b border-accentSecondary shadow-md flex flex-col items-center py-6 space-y-4 text-sm tracking-widest uppercase text-textMuted">
+            <a href="#about" class="mobile-link hover:text-accentPrimary">About</a>
+            <a href="#education" class="mobile-link hover:text-accentPrimary">Education</a>
+            <a href="#projects" class="mobile-link hover:text-accentPrimary">Projects</a>
+            <a href="#experience" class="mobile-link hover:text-accentPrimary">Experience</a>
+            <a href="#contact" class="mobile-link hover:text-accentPrimary">Contact</a>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section class="relative min-h-screen flex items-center justify-center overflow-hidden pt-20 px-6 md:px-12">
+        <div class="absolute inset-0 z-0 bg-[radial-gradient(circle_at_top_right,_var(--tw-gradient-stops))] from-accentSecondary/30 via-bgMain to-bgMain"></div>
+        
+        <div class="max-w-7xl mx-auto flex flex-col-reverse md:flex-row items-center z-10 gap-12">
+            <!-- Text Content -->
+            <div class="flex-1 text-center md:text-left fade-in-section">
+                <p class="text-accent-cursive text-4xl md:text-5xl mb-2">Welcome to my world</p>
+                <h1 class="font-serif text-5xl md:text-7xl font-bold text-textMain leading-tight mb-4">
+                    Phạm Mai <br/><span class="italic text-accentPrimary">Phương</span>
+                </h1>
+                <p class="text-sm md:text-base tracking-[0.2em] uppercase text-textMuted mb-8 border-l-2 border-accentPrimary pl-4">
+                    Data-Driven Economic & <br/>Business Research Analyst
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+                    <a href="#contact" class="px-8 py-3 bg-textMain text-bgMain text-sm tracking-widest uppercase hover:bg-accentPrimary transition-all duration-300 rounded-full shadow-md">Liên hệ ngay</a>
+                    <a href="#projects" class="px-8 py-3 bg-transparent border border-accentPrimary text-textMain text-sm tracking-widest uppercase hover:bg-accentSecondary transition-all duration-300 rounded-full">Xem dự án</a>
+                </div>
+            </div>
+            
+            <!-- Hero Image -->
+            <div class="flex-1 flex justify-center md:justify-end fade-in-section">
+                <div class="relative p-2 rounded-[2rem] border border-accentSecondary">
+                    <img src="avatar_4.jpg" alt="Phạm Mai Phương" class="w-64 md:w-80 h-auto object-cover rounded-[1.5rem] shadow-xl">
+                    <!-- Decorative element -->
+                    <div class="absolute -bottom-6 -left-6 w-24 h-24 bg-accentSecondary/50 rounded-full -z-10 blur-xl"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT SECTION -->
+    <section id="about" class="py-24 px-6 md:px-12 bg-white">
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-16">
+            <!-- About Image -->
+            <div class="flex-1 fade-in-section relative">
+                <img src="about_4.jpg" alt="About Phương" class="w-full max-w-md mx-auto rounded-[2rem] shadow-lg object-cover">
+                <div class="absolute top-1/2 -right-8 transform -translate-y-1/2 hidden lg:block text-accent-cursive text-6xl rotate-90 origin-bottom-left whitespace-nowrap opacity-30">
+                    Discover my journey
+                </div>
+            </div>
+            
+            <!-- About Text -->
+            <div class="flex-1 fade-in-section">
+                <h2 class="text-accent-cursive text-5xl mb-2">About me</h2>
+                <h3 class="font-serif text-3xl md:text-4xl text-textMain font-bold mb-6">Định hướng Data / Business Analyst</h3>
+                
+                <div class="space-y-4 text-textMuted font-light leading-relaxed mb-8">
+                    <p><strong>Họ & Tên:</strong> Phạm Mai Phương</p>
+                    <p><strong>Vị trí:</strong> Data Analyst / Business Analyst / Economic Researcher</p>
+                    <p><strong>Địa chỉ:</strong> Phường Láng, Hà Nội</p>
+                    <p><strong>Điện thoại:</strong> 0818 202 006</p>
+                    <p><strong>Email:</strong> phamphuong12092006@gmail.com</p>
+                </div>
+
+                <div class="bg-accentPrimary/10 border border-accentPrimary/30 rounded-2xl p-6 italic text-textMain font-serif text-lg">
+                    "Phân tích dữ liệu không chỉ là đọc các con số, mà là nghệ thuật kể câu chuyện kinh tế để đưa ra những quyết định mang tính chiến lược."
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- EDUCATION SECTION -->
+    <section id="education" class="py-24 px-6 md:px-12 bg-bgMain">
+        <div class="max-w-5xl mx-auto fade-in-section text-center mb-16">
+            <h2 class="text-accent-cursive text-5xl mb-2">Credentials</h2>
+            <h3 class="font-serif text-3xl md:text-4xl text-textMain font-bold uppercase tracking-widest">Học vấn & Chứng chỉ</h3>
+        </div>
+
+        <div class="max-w-4xl mx-auto fade-in-section">
+            <div class="glass-card rounded-3xl p-8 md:p-12 shadow-sm relative overflow-hidden">
+                <!-- Decorative Circle -->
+                <div class="absolute -top-10 -right-10 w-32 h-32 bg-accentSecondary rounded-full opacity-50 blur-2xl"></div>
+
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-center border-b border-accentSecondary pb-6 mb-6">
+                    <div>
+                        <h4 class="font-serif text-2xl font-bold text-textMain">Trường Đại học Ngoại thương (FTU)</h4>
+                        <p class="text-accentPrimary font-medium mt-1">2023 – Nay</p>
+                        <p class="text-textMuted mt-2">Khoa: Kinh tế Quốc tế | Chuyên ngành: Kinh tế & Phát triển Quốc tế</p>
+                    </div>
+                    <div class="mt-4 md:mt-0 flex items-center gap-3 bg-white px-4 py-2 rounded-xl shadow-sm border border-accentSecondary/50">
+                        <div class="text-right">
+                            <span class="block text-xs uppercase tracking-wider text-textMuted">GPA Xuất sắc</span>
+                            <span class="font-serif text-xl font-bold text-textMain">3.83 / 4.00</span>
+                        </div>
+                        <img src="gpa_4.png" alt="GPA Proof" class="h-10 w-auto rounded border border-gray-100">
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div>
+                        <h5 class="font-serif text-lg font-bold text-textMain mb-4">Các môn nòng cốt</h5>
+                        <ul class="space-y-2 text-textMuted font-light list-disc list-inside marker:text-accentPrimary">
+                            <li>Kinh tế lượng 1-2</li>
+                            <li>Kinh tế vi mô 1-2</li>
+                            <li>Kinh tế vĩ mô 1-2</li>
+                            <li>Kinh tế quốc tế 1-2</li>
+                            <li>Tăng trưởng & Phát triển</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h5 class="font-serif text-lg font-bold text-textMain mb-4">Chứng chỉ & Ngoại ngữ</h5>
+                        <ul class="space-y-3 text-textMuted font-light">
+                            <li class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-accentPrimary"></span> Google AI Essentials</li>
+                            <li class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-accentPrimary"></span> IELTS 6.0</li>
+                            <li class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-accentPrimary"></span> HSKK Trung cấp</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROJECTS SECTION -->
+    <section id="projects" class="py-24 px-6 md:px-12 bg-white">
+        <div class="max-w-6xl mx-auto fade-in-section text-center mb-16">
+            <h2 class="text-accent-cursive text-5xl mb-2">Featured Work</h2>
+            <h3 class="font-serif text-3xl md:text-4xl text-textMain font-bold uppercase tracking-widest">Dự án Nghiên cứu</h3>
+        </div>
+
+        <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Project 1 -->
+            <div class="fade-in-section bg-bgMain rounded-3xl border border-accentSecondary overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col">
+                <img src="project_4.jpg" alt="Dự án FDI" class="w-full h-56 object-cover border-b border-accentSecondary">
+                <div class="p-6 flex-1 flex flex-col">
+                    <span class="text-xs tracking-widest text-accentPrimary uppercase font-bold mb-2">2026 | Trưởng nhóm</span>
+                    <h4 class="font-serif text-xl font-bold text-textMain mb-3 leading-snug">Lan tỏa kỹ năng số & FDI tại Châu Á</h4>
+                    <p class="text-textMuted text-sm font-light mb-4 flex-1">Nghiên cứu bối cảnh tác động của Đầu tư trực tiếp nước ngoài đến sự phát triển kỹ năng số tại các quốc gia Châu Á.</p>
+                    <div class="flex flex-wrap gap-2 mt-auto">
+                        <span class="text-xs bg-white border border-accentSecondary px-3 py-1 rounded-full text-textMuted">Stata</span>
+                        <span class="text-xs bg-white border border-accentSecondary px-3 py-1 rounded-full text-textMuted">Excel</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 2 -->
+            <div class="fade-in-section bg-bgMain rounded-3xl border border-accentSecondary overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col">
+                <div class="h-56 bg-accentSecondary/30 flex items-center justify-center border-b border-accentSecondary">
+                    <span class="text-accent-cursive text-4xl text-textMuted opacity-50">Research</span>
+                </div>
+                <div class="p-6 flex-1 flex flex-col">
+                    <span class="text-xs tracking-widest text-accentPrimary uppercase font-bold mb-2">2026 | Thành viên chính</span>
+                    <h4 class="font-serif text-xl font-bold text-textMain mb-3 leading-snug">Tác động của GII đến tăng trưởng qua HDI</h4>
+                    <p class="text-textMuted text-sm font-light mb-4 flex-1">Phân tích chuyên sâu về sự liên kết giữa Chỉ số Đổi mới sáng tạo (GII) và Tăng trưởng kinh tế thông qua Chỉ số Phát triển con người.</p>
+                    <div class="flex flex-wrap gap-2 mt-auto">
+                        <span class="text-xs bg-white border border-accentSecondary px-3 py-1 rounded-full text-textMuted">Python</span>
+                        <span class="text-xs bg-white border border-accentSecondary px-3 py-1 rounded-full text-textMuted">Phân tích định lượng</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 3 -->
+            <div class="fade-in-section bg-bgMain rounded-3xl border border-accentSecondary overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col">
+                <div class="h-56 bg-accentSecondary/30 flex items-center justify-center border-b border-accentSecondary">
+                    <span class="text-accent-cursive text-4xl text-textMuted opacity-50">NCTKH</span>
+                </div>
+                <div class="p-6 flex-1 flex flex-col">
+                    <span class="text-xs tracking-widest text-accentPrimary uppercase font-bold mb-2">2026 | Thành viên</span>
+                    <h4 class="font-serif text-xl font-bold text-textMain mb-3 leading-snug">Khảo sát nhận thức Gen Z về Greenwashing</h4>
+                    <p class="text-textMuted text-sm font-light mb-4 flex-1">Dự án Nghiên cứu khoa học cấp Trường, đánh giá góc nhìn của người tiêu dùng trẻ trước các chiến dịch "Tẩy xanh" của doanh nghiệp.</p>
+                    <div class="flex flex-wrap gap-2 mt-auto">
+                        <span class="text-xs bg-white border border-accentSecondary px-3 py-1 rounded-full text-textMuted">Data Collection</span>
+                        <span class="text-xs bg-white border border-accentSecondary px-3 py-1 rounded-full text-textMuted">SPSS/Excel</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- EXPERIENCE & SKILLS SECTION -->
+    <section id="experience" class="py-24 px-6 md:px-12 bg-bgMain">
+        <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16">
+            
+            <!-- Experience -->
+            <div class="fade-in-section">
+                <h2 class="text-accent-cursive text-5xl mb-2">My Journey</h2>
+                <h3 class="font-serif text-2xl md:text-3xl text-textMain font-bold uppercase tracking-widest mb-8">Kinh nghiệm & Vận hành</h3>
+                
+                <div class="space-y-6 relative before:absolute before:inset-0 before:ml-2 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-transparent before:via-accentSecondary before:to-transparent">
+                    
+                    <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
+                        <div class="flex items-center justify-center w-5 h-5 rounded-full bg-accentPrimary border-4 border-bgMain shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10 ml-0 md:ml-0"></div>
+                        <div class="w-[calc(100%-2rem)] md:w-[calc(50%-1.5rem)] glass-card p-5 rounded-2xl md:group-odd:text-right">
+                            <h4 class="font-serif font-bold text-textMain">Sự kiện Đối ngoại & Giao lưu Quốc tế</h4>
+                            <p class="text-sm text-textMuted mt-1">Đại biểu / Hỗ trợ: Hội thảo Cấp cao Tiếp đón Đoàn Thủ tướng Thái Lan.</p>
+                        </div>
+                    </div>
+
+                    <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
+                        <div class="flex items-center justify-center w-5 h-5 rounded-full bg-accentSecondary border-4 border-bgMain shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10 ml-0 md:ml-0"></div>
+                        <div class="w-[calc(100%-2rem)] md:w-[calc(50%-1.5rem)] glass-card p-5 rounded-2xl md:group-odd:text-right">
+                            <div class="text-xs text-accentPrimary font-bold mb-1">2023 – Nay</div>
+                            <h4 class="font-serif font-bold text-textMain">Trợ lý Vận hành & Quản lý Doanh thu</h4>
+                            <p class="text-sm text-textMuted mt-1">Huy Phuong Hotel</p>
+                        </div>
+                    </div>
+
+                    <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
+                        <div class="flex items-center justify-center w-5 h-5 rounded-full bg-accentSecondary border-4 border-bgMain shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10 ml-0 md:ml-0"></div>
+                        <div class="w-[calc(100%-2rem)] md:w-[calc(50%-1.5rem)] glass-card p-5 rounded-2xl md:group-odd:text-right">
+                            <div class="text-xs text-accentPrimary font-bold mb-1">2024 – Nay</div>
+                            <h4 class="font-serif font-bold text-textMain">Hỗ trợ Vận hành & Quản trị Sự kiện</h4>
+                            <p class="text-sm text-textMuted mt-1">Trung tâm Tiệc cưới Huy Phương</p>
+                        </div>
+                    </div>
+
+                    <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
+                        <div class="flex items-center justify-center w-5 h-5 rounded-full bg-accentSecondary border-4 border-bgMain shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10 ml-0 md:ml-0"></div>
+                        <div class="w-[calc(100%-2rem)] md:w-[calc(50%-1.5rem)] glass-card p-5 rounded-2xl md:group-odd:text-right">
+                            <div class="text-xs text-accentPrimary font-bold mb-1">2023 – Nay</div>
+                            <h4 class="font-serif font-bold text-textMain">Quản lý Thu ngân</h4>
+                            <p class="text-sm text-textMuted mt-1">Huy Phuong Swimming Pool</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Skills Matrix -->
+            <div class="fade-in-section">
+                <h2 class="text-accent-cursive text-5xl mb-2">Expertise</h2>
+                <h3 class="font-serif text-2xl md:text-3xl text-textMain font-bold uppercase tracking-widest mb-8">Ma trận Kỹ năng</h3>
+                
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <!-- Skill Box -->
+                    <div class="bg-white border border-accentSecondary p-6 rounded-2xl hover:shadow-md transition-shadow">
+                        <h4 class="text-accentPrimary font-serif font-bold text-lg mb-3">Dữ liệu & Nghiên cứu</h4>
+                        <ul class="text-sm text-textMuted space-y-2">
+                            <li>• Stata (Advanced)</li>
+                            <li>• Python</li>
+                            <li>• Microsoft Excel (Advanced)</li>
+                        </ul>
+                    </div>
+                    <!-- Skill Box -->
+                    <div class="bg-white border border-accentSecondary p-6 rounded-2xl hover:shadow-md transition-shadow">
+                        <h4 class="text-accentPrimary font-serif font-bold text-lg mb-3">Tư duy & Giải quyết</h4>
+                        <ul class="text-sm text-textMuted space-y-2">
+                            <li>• Tư duy Chiến lược</li>
+                            <li>• Phân tích Kinh tế</li>
+                            <li>• Phân tích Kinh doanh</li>
+                        </ul>
+                    </div>
+                    <!-- Skill Box -->
+                    <div class="bg-white border border-accentSecondary p-6 rounded-2xl hover:shadow-md transition-shadow">
+                        <h4 class="text-accentPrimary font-serif font-bold text-lg mb-3">Trực quan & Báo cáo</h4>
+                        <ul class="text-sm text-textMuted space-y-2">
+                            <li>• PowerPoint Presentation</li>
+                            <li>• Canva Design</li>
+                            <li>• Báo cáo chuyên sâu</li>
+                        </ul>
+                    </div>
+                    <!-- Skill Box -->
+                    <div class="bg-white border border-accentSecondary p-6 rounded-2xl hover:shadow-md transition-shadow">
+                        <h4 class="text-accentPrimary font-serif font-bold text-lg mb-3">Kỹ năng mềm</h4>
+                        <ul class="text-sm text-textMuted space-y-2">
+                            <li>• Quản lý nhóm (Leadership)</li>
+                            <li>• Thuyết trình chuyên nghiệp</li>
+                            <li>• Giao tiếp & Đàm phán</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER & CONTACT -->
+    <footer id="contact" class="bg-textMain text-bgMain py-20 px-6 md:px-12 relative overflow-hidden">
+        <!-- Background Pattern -->
+        <div class="absolute top-0 left-0 w-full h-full opacity-5 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-white to-transparent"></div>
+        
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row gap-16 relative z-10 fade-in-section">
+            <!-- Contact Info -->
+            <div class="flex-1">
+                <h2 class="text-accent-cursive text-6xl text-accentPrimary mb-2">Get in touch</h2>
+                <h3 class="font-serif text-3xl font-bold mb-6">Let's Create Together.</h3>
+                <p class="text-accentSecondary font-light text-sm md:text-base leading-relaxed mb-8 max-w-md">
+                    Cảm ơn bạn đã ghé thăm Portfolio của mình. Nếu bạn có cơ hội hợp tác hoặc cần một chuyên viên phân tích nhiệt huyết, đừng ngần ngại liên hệ nhé!
+                </p>
+                <div class="space-y-3 text-sm font-light tracking-wide">
+                    <p><span class="text-accentPrimary mr-2">E.</span> phamphuong12092006@gmail.com</p>
+                    <p><span class="text-accentPrimary mr-2">P.</span> 0818 202 006</p>
+                    <p><span class="text-accentPrimary mr-2">A.</span> Phường Láng, Hà Nội</p>
+                </div>
+            </div>
+
+            <!-- Mockup Form -->
+            <div class="flex-1">
+                <form class="bg-white/5 backdrop-blur-sm border border-white/10 rounded-3xl p-8 shadow-2xl">
+                    <div class="space-y-4">
+                        <div>
+                            <input type="text" placeholder="Tên của bạn" class="w-full bg-transparent border-b border-white/30 py-3 px-2 text-white placeholder:text-white/50 focus:outline-none focus:border-accentPrimary transition-colors text-sm">
+                        </div>
+                        <div>
+                            <input type="email" placeholder="Email liên hệ" class="w-full bg-transparent border-b border-white/30 py-3 px-2 text-white placeholder:text-white/50 focus:outline-none focus:border-accentPrimary transition-colors text-sm">
+                        </div>
+                        <div>
+                            <textarea rows="3" placeholder="Lời nhắn..." class="w-full bg-transparent border-b border-white/30 py-3 px-2 text-white placeholder:text-white/50 focus:outline-none focus:border-accentPrimary transition-colors text-sm resize-none"></textarea>
+                        </div>
+                        <button type="button" class="w-full mt-4 bg-accentPrimary hover:bg-[#C58F80] text-white py-3 rounded-xl font-serif tracking-widest uppercase text-sm transition-colors shadow-lg">
+                            Gửi tin nhắn
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        
+        <div class="max-w-6xl mx-auto mt-20 pt-8 border-t border-white/10 text-center text-xs text-white/50 uppercase tracking-widest font-light z-10 relative">
+            &copy; 2026 Phạm Mai Phương. Designed with elegance.
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // 1. Sticky Navbar Effect
+            const navbar = document.getElementById('navbar');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    navbar.classList.add('nav-scrolled');
+                    navbar.classList.remove('py-4');
+                    navbar.classList.add('py-2');
+                } else {
+                    navbar.classList.remove('nav-scrolled');
+                    navbar.classList.add('py-4');
+                    navbar.classList.remove('py-2');
+                }
+            });
+
+            // 2. Mobile Menu Toggle
+            const mobileBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const mobileLinks = document.querySelectorAll('.mobile-link');
+
+            mobileBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+
+            // Close mobile menu when clicking a link
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
+                });
+            });
+
+            // 3. Fade-in on Scroll Intersection Observer
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.15 // Trigger when 15% of element is visible
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        observer.unobserve(entry.target); // Run only once
+                    }
+                });
+            }, observerOptions);
+
+            const fadeElements = document.querySelectorAll('.fade-in-section');
+            fadeElements.forEach(el => observer.observe(el));
+        });
+    </script>
+</body>
+</html>
